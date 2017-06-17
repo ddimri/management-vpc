@@ -24,7 +24,7 @@ module "vpc" {
   instance_type = "t2.micro"
   key_name = "e2-key-file"
   aws_region = "us-west-2"
-  vpc_name = "ipa-mgmt-vpc"
+  vpc_name = "awstraining-mgmt-vpc"
   feyedc_cidr_block = "50.201.125.254/32"   # to be replaced with FEYE DC CIDR Block
   private_key = "~/.ssh/e2-key-file.pem"
   ssl_certificate = "arn:aws:iam::398818754185:server-certificate/docker-hello-world"
