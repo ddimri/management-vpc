@@ -6,7 +6,7 @@ Enable by putting the following in your main.tf
 
 ```
 module "vpc" {
-  source = "git::https://github.com/ddimri/terraform.git"
+  source = "git::https://github.com/ddimri/management-vpc.git"
   home_dir = "/Users/deepak.prasad"
   aws_profile = "deepakprasad"
   project =  "awstraining"
