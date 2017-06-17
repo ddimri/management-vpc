@@ -332,74 +332,12 @@ resource "aws_security_group_rule" "HTTPS_access_from_CC_JumpBoxes" {
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-mgmt-public-subnet-sg.id}"
 }
-resource "aws_security_group_rule" "HTTP_access_from_port_80" {
-  type = "ingress"
-  from_port   = 80
-  to_port     = 80
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "Port_88_inbound_access_from_self_sg" {
-  type = "ingress"
-  from_port   = 88
-  to_port     = 88
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "udp_Port_88_inbound_access_from_self_sg" {
-  type = "ingress"
-  from_port   = 88
-  to_port     = 88
-  protocol    = "udp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "LDAP_access_from_self_sg" {
-  type = "ingress"
-  from_port   = 389
-  to_port     = 389
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
+
+
 resource "aws_security_group_rule" "Allow_HTTPS_access_from_self_sg" {
   type = "ingress"
   from_port   = 443
   to_port     = 443
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "Allow_udp_port_464_from_self_sg" {
-  type = "ingress"
-  from_port   = 464
-  to_port     = 464
-  protocol    = "udp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "Allow_port_464_from_self_sg" {
-  type = "ingress"
-  from_port   = 464
-  to_port     = 464
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "Allow_port_636_from_self_sg" {
-  type = "ingress"
-  from_port   = 636
-  to_port     = 636
-  protocol    = "tcp"
-  security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-  source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
-}
-resource "aws_security_group_rule" "Allow_UDP_access_from_self_sg" {
-  type = "ingress"
-  from_port   = 123
-  to_port     = 123
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
@@ -499,8 +437,7 @@ resource "aws_elb" "awstraining-elb" {
         healthy_threshold = 2
 	unhealthy_threshold = 2
 	timeout = 3
-	#target = "HTTPs:443/index.html"
-	target = "tcp:443"
+	target = "HTTPs:443/index.html"
 	interval = 30
   }
 
