@@ -119,7 +119,7 @@ resource "aws_eip" "ccjumpbox-ip" {
     source      = "${var.private_key}"
     destination = "~/.ssh/${var.key_name}.pem"
   }
-  }
+  
 
 
   provisioner "remote-exec" {
@@ -127,7 +127,7 @@ resource "aws_eip" "ccjumpbox-ip" {
       "chmod 0400 ~/.ssh/${var.key_name}.pem",
     ]
   }
-
+}
 
 # Create an internet gateway
 resource "aws_internet_gateway" "awstraining-vpc-igw" {
