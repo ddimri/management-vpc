@@ -499,7 +499,8 @@ resource "aws_elb" "awstraining-elb" {
         healthy_threshold = 2
 	unhealthy_threshold = 2
 	timeout = 3
-	target = "HTTPs:443/index.html"
+	#target = "HTTPs:443/index.html"
+	target = "tcp:443"
 	interval = 30
   }
 
