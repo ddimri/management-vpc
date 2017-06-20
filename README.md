@@ -1,6 +1,4 @@
-# management-vpc for AWS Training
-
-Management VPC
+# Management VPC
 ===============
 ```
 sudo apt-get install git-core
