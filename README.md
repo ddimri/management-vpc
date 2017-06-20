@@ -1,9 +1,17 @@
 # management-vpc for AWS Training
 
+Management VPC
+===============
+```
+sudo apt-get install git-core
+svn export https://github.com/ddimri/terraform-docker/trunk/certs
+cd certs
+aws iam delete-server-certificate --server-certificate-name docker-hello-world --profile deepakprasad
+aws iam upload-server-certificate --server-certificate-name docker-hello-world --certificate-body file://aws.training.com.cert.pem --certificate-chain file://ca-chain.cert.pem --private-key file://aws.training.com.key --profile deepakprasad
+```
+
 # usage
-
 Enable by putting the following in your main.tf
-
 ```
 module "vpc" {
   source = "git::https://github.com/ddimri/management-vpc.git"
@@ -29,6 +37,6 @@ module "vpc" {
   private_key = "~/.ssh/e2-key-file.pem"
   ssl_certificate = "arn:aws:iam::398818754185:server-certificate/docker-hello-world"
 }
-
 ```
+
 
