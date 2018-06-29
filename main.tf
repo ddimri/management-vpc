@@ -25,14 +25,14 @@ resource "aws_security_group" "awstraining-mgmt-public-subnet-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.feyedc_cidr_block}"] # to be replaced with FEYE DC CIDR Block
+    cidr_blocks = ["${var.cidr_block}"]
   }
 
   ingress {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${var.remote_vpc_cidr_block}"]
+    cidr_blocks = ["${var.cidr_block}"]
   }
 
   # outbound internet access
