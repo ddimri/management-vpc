@@ -314,28 +314,28 @@ resource "aws_security_group_rule" "SSH_access_from_self" {
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
 }
-resource "aws_security_group_rule" "HTTPS_access_from_ELB" {
+resource "aws_security_group_rule" "HTTP_access_from_ELB" {
   type = "ingress"
-  from_port   = 443
-  to_port     = 443
+  from_port   = 80
+  to_port     = 80
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-elb-sg.id}"
 }
-resource "aws_security_group_rule" "HTTPS_access_from_CC_JumpBoxes" {
+resource "aws_security_group_rule" "HTTP_access_from_CC_JumpBoxes" {
   type = "ingress"
-  from_port   = 443
-  to_port     = 443
+  from_port   = 80
+  to_port     = 80
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-mgmt-public-subnet-sg.id}"
 }
 
 
-resource "aws_security_group_rule" "Allow_HTTPS_access_from_self_sg" {
+resource "aws_security_group_rule" "Allow_HTTP_access_from_self_sg" {
   type = "ingress"
-  from_port   = 443
-  to_port     = 443
+  from_port   = 80
+  to_port     = 80
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-server-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
@@ -358,16 +358,16 @@ resource "aws_security_group" "awstraining-elb-sg" {
   vpc_id      = "${aws_vpc.awstraining-mgmt-vpc.id}"
   # Inbound internet access
   ingress {
-    from_port   = 443
-    to_port     = 443
+    from_port   = 80
+    to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
 resource "aws_security_group_rule" "https_outbound_access_to_awstraining" {
   type = "egress"
-  from_port   = 443
-  to_port     = 443
+  from_port   = 80
+  to_port     = 80
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-elb-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
