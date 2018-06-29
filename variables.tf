@@ -6,7 +6,7 @@ variable "project" {}
 
 variable "environment" {}
 
-variable "vpc_cidr_block" {}
+variable "cidr_block" {}
 
 variable "private_subnet1_cidr_block" {}
 
@@ -34,9 +34,6 @@ variable "aws_region" {}
 
 variable "vpc_name" {}
 
-variable "feyedc_cidr_block" {}
-
-variable "remote_vpc_cidr_block" {}
 
 variable "private_key" {
   description = "private key to connect to hosts from the jumpbox"
