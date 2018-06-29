@@ -71,10 +71,10 @@ resource "aws_security_group_rule" "allow_ssh_from_mgmt_public_subnet_hosts" {
   source_security_group_id = "${aws_security_group.awstraining-mgmt-public-subnet-sg.id}"
 }
 
-resource "aws_security_group_rule" "https_outbound" {
+resource "aws_security_group_rule" "http_outbound" {
   type = "egress"
-  from_port   = 443
-  to_port     = 443
+  from_port   = 80
+  to_port     = 80
   protocol    = "tcp"
   security_group_id = "${aws_security_group.awstraining-mgmt-public-subnet-sg.id}"
   source_security_group_id = "${aws_security_group.awstraining-server-sg.id}"
@@ -364,7 +364,7 @@ resource "aws_security_group" "awstraining-elb-sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-resource "aws_security_group_rule" "https_outbound_access_to_awstraining" {
+resource "aws_security_group_rule" "http_outbound_access_to_awstraining" {
   type = "egress"
   from_port   = 80
   to_port     = 80
@@ -425,17 +425,17 @@ resource "aws_elb" "awstraining-elb" {
   security_groups = ["${aws_security_group.awstraining-elb-sg.id}"]
 
   listener {
-	instance_port = 443
-        instance_protocol = "https"
-	lb_port = 443
-	lb_protocol = "https"
-	ssl_certificate_id = "${var.ssl_certificate}"
+	instance_port = 80
+        instance_protocol = "http"
+	lb_port = 80
+	lb_protocol = "http"
+	#ssl_certificate_id = "${var.ssl_certificate}"
   }
   health_check {
         healthy_threshold = 2
 	unhealthy_threshold = 2
 	timeout = 3
-	target = "HTTPs:443/index.html"
+	target = "HTTP:80/index.html"
 	interval = 30
   }
 
@@ -448,7 +448,7 @@ resource "aws_elb" "awstraining-elb" {
 resource "aws_lb_cookie_stickiness_policy" "awstraining-elb-cookie" {
   name = "${var.project}-elb-policy"
   load_balancer = "${aws_elb.awstraining-elb.id}"
-  lb_port = 443
+  lb_port = 80
 }
 
 # Create instance
