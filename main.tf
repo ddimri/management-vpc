@@ -282,12 +282,11 @@ resource "aws_security_group" "awstraining-server-sg" {
   description = "Security group for FreeIPA"
   vpc_id      = "${aws_vpc.awstraining-mgmt-vpc.id}"
 
-  # inbound ssh access from FEYE VPN Servers/DC Server
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.feyedc_cidr_block}"]
+    cidr_blocks = ["${var.cidr_block}"]
   }
 
  # outbound internet access
