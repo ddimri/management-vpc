@@ -20,7 +20,6 @@ resource "aws_security_group" "awstraining-mgmt-public-subnet-sg" {
   name        = "awstraining-${var.environment}-mgmt-public-subnet-sg "
   description = "Security group for Public Subnets"
   vpc_id      = "${aws_vpc.awstraining-mgmt-vpc.id}"
-  # inbound ssh access from FEYE DC
   ingress {
     from_port   = 22
     to_port     = 22
