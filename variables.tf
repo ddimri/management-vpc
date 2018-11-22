@@ -44,4 +44,4 @@ variable "count" {
   description = "the number of instances"
 }
 
-variable "ssl_certificate" {}
+#variable "ssl_certificate" {}
