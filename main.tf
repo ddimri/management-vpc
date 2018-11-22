@@ -167,10 +167,6 @@ resource "aws_route_table" "public-subnet1" {
     gateway_id = "${aws_internet_gateway.awstraining-vpc-igw.id}"
   }
 
-  route {
-    cidr_block = "${var.remote_vpc_cidr_block}"
-    instance_id = "${aws_instance.awstraining-openvpn-proxy-1.id}"
-  }
 
   tags {
     Name = "${var.vpc_name}-${element(var.availability_zones, 0)}-public-subnet"
@@ -208,10 +204,7 @@ resource "aws_route_table" "public-subnet2" {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.awstraining-vpc-igw.id}"
   }
-  route {
-    cidr_block = "${var.remote_vpc_cidr_block}"
-    instance_id = "${aws_instance.awstraining-openvpn-proxy-1.id}"
-  }
+
   tags {
     Name = "${var.vpc_name}-${element(var.availability_zones, 1)}-public-subnet"
   }
