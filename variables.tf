@@ -6,7 +6,7 @@ variable "project" {}
 
 variable "environment" {}
 
-variable "cidr_block" {}
+variable "vpc_cidr_block" {}
 
 variable "private_subnet1_cidr_block" {}
 
