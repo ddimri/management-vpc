@@ -24,14 +24,14 @@ resource "aws_security_group" "awstraining-mgmt-public-subnet-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.vpc_cidr_block}"]
+    cidr_blocks = ["${var.inboud_ssh}"]
   }
 
   ingress {
     from_port   = -1
     to_port     = -1
     protocol    = "icmp"
-    cidr_blocks = ["${var.vpc_cidr_block}"]
+    cidr_blocks = ["${var.inboud_ssh}"]
   }
 
   # outbound internet access
@@ -273,7 +273,7 @@ resource "aws_security_group" "awstraining-server-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${var.vpc_cidr_block}"]
+    cidr_blocks = ["${var.inboud_ssh}"]
   }
 
  # outbound internet access
