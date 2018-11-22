@@ -232,10 +232,7 @@ resource "aws_route_table" "private-subnet1" {
     gateway_id = "${aws_nat_gateway.nat-gw.id}"
   }
 
-  route {
-    cidr_block = "${var.remote_vpc_cidr_block}"
-    instance_id = "${aws_instance.awstraining-openvpn-proxy-1.id}"
-  }
+ 
   tags {
     Name = "${var.vpc_name}-${element(var.availability_zones, 0)}-private-subnet"
   }
