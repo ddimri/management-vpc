@@ -31,7 +31,7 @@ module "vpc" {
   key_name = "e2-key-file"
   aws_region = "us-west-2"
   vpc_name = "awstraining-mgmt-vpc"
-  cidr_block = 54.32.125.254/32"   
+  cidr_block = "54.32.125.254/32"   
   private_key = "~/.ssh/e2-key-file.pem"
   #ssl_certificate = "arn:aws:iam::398818754185:server-certificate/docker-hello-world"
 }
