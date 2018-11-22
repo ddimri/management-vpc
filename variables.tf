@@ -44,4 +44,6 @@ variable "count" {
   description = "the number of instances"
 }
 
+variable "inboud_ssh" {}
+
 #variable "ssl_certificate" {}
